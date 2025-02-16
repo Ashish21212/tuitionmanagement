@@ -1,23 +1,18 @@
 // filepath: /c:/Users/ujlpd/OneDrive/Desktop/Loder/tms/tuitionmanagement/tuition-frontend/src/App.jsx
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import Navbar from "./components/navbar";
-import Signup from "./components/signup";
-import Login from "./components/login";
+import { BrowserRouter as Router } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import AppRoutes from "./AppRoutes";
 
 const App = () => {
   return (
     <Router>
-      <div>
-        <h1 className="text-red-950">hellooooooooooo</h1>
+      <div className="flex flex-col min-h-screen">
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
+        <div className="flex-grow">
+          <AppRoutes />
+        </div>
         <Footer />
       </div>
     </Router>
