@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -12,6 +14,8 @@ function Login() {
       email,
       password,
     };
+
+    
 
     try {
       const response = await fetch("http://localhost:3000/users/login", {
@@ -26,6 +30,7 @@ function Login() {
         console.log("User logged in successfully!");
         setEmail("");
         setPassword("");
+        
       } else {
         console.error("Error logging in!");
       }
