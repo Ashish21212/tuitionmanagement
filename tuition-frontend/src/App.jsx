@@ -1,4 +1,4 @@
-// filepath: /c:/Users/ujlpd/OneDrive/Desktop/Loder/tms/tuitionmanagement/tuition-frontend/src/App.jsx
+
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -9,7 +9,6 @@ const App = () => {
   return (
     <Router>
       <div>
-        
         <Navbar />
         <div className="flex-grow">
           <AppRoutes />
