@@ -1,41 +1,67 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { handleError, handleSuccess } from "../util";
+
 
 function Signup() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [signupData, setSignupData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const userData = {
-      name,
-      email,
-      password,
-    };
-
-    try {
-      const response = await fetch("http://localhost:3000/users/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
-
-      if (response.ok) {
-        console.log("User added successfully!");
-        setName("");
-        setEmail("");
-        setPassword("");
-      } else {
-        console.error("Error adding user!");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    setSignupData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
+ console.log(signupData);
+
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  const {name, email, password} = signupData;
+
+  if (!name || !email || !password) {
+    return handleError("Name, email and password are required!");
+  }  
+  
+  try{
+      const url = "http://localhost:3000/users/signup";
+      const response = await fetch(url, {
+         method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(signupData),
+
+      });
+      const result = await response.json();
+      const {success, message, error} = result;
+      if(success){
+        handleSuccess(message);
+        setTimeout(()=>{
+          navigate("/login");
+        },3000);
+      }else if(error){
+        const details = error?.details[0].message;
+        handleError(details);
+      }else if(!success){
+        handleError(message);
+      }
+  }catch(err){
+    handleError(err);
+  }
+ }
+
+  
+
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -45,30 +71,34 @@ function Signup() {
           <div className="mb-4">
             <label className="block text-gray-700">Name</label>
             <input
+             onChange={handleChange}
               type="text"
               placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              name="name"
+              value={signupData.name}
+             
               className="w-full px-3 py-2 border rounded"
             />
           </div>
           <div className="mb-4">
             <label className="block text-gray-700">Email</label>
             <input
+             onChange={handleChange}
               type="email"
               placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              value={signupData.email}
               className="w-full px-3 py-2 border rounded"
             />
           </div>
           <div className="mb-4">
             <label className="block text-gray-700">Password</label>
             <input
+             onChange={handleChange}
               type="password"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              value={signupData.password}
               className="w-full px-3 py-2 border rounded"
             />
           </div>
@@ -76,7 +106,7 @@ function Signup() {
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
           >
-            Submit
+            Signup
           </button>
           
         </form>
@@ -87,6 +117,7 @@ function Signup() {
           </Link>
         </p>
       </div>
+      <ToastContainer />
     </div>
   );
 }
