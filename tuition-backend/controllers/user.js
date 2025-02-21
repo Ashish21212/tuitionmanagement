@@ -11,6 +11,7 @@ exports.users_create_sign = (req, res, next) => {
       if (user.length >= 1) {
         return res.status(404).json({
           message: "Mail already exists",
+          success:false
         });
       } else {
         bcrypt.hash(req.body.password, 10, (err, hash) => {
@@ -31,6 +32,7 @@ exports.users_create_sign = (req, res, next) => {
                 console.log(result);
                 res.status(201).json({
                   message: "User Created",
+                  success:true
                 });
               })
               .catch((err) => {
@@ -77,7 +79,10 @@ User.find({email:req.body.email})
       )
       return res.status(200).json({
         message: "Auth successful",
-        token: token,
+        success:true,
+        token,
+        name: user[0].name,
+        
       });
     }
     res.status(401).json({
