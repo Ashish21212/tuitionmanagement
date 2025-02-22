@@ -4,11 +4,12 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AppRoutes from "./AppRoutes";
 
-const App = () => {
+const App = ({}) => {
+ 
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
-        <Navbar />
+      <Navbar />
         <div className="flex-grow">
           <AppRoutes />
         </div>
