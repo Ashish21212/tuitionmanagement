@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import the Link component
 
-const FirstBanner = ({ loggedInUser}) => {
+const FirstBanner = ({ isLoggedIn }) => {
   return (
     <div className="relative overflow-hidden bg-gradient-to-r from-white to-blue-50">
       <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
@@ -15,7 +15,7 @@ const FirstBanner = ({ loggedInUser}) => {
               Write someting hereeee eeeeeeeeeee eeeeeeeee
             </p>
             <div className="flex flex-wrap gap-4">
-              {!loggedInUser && (
+              {!isLoggedIn && (
                 <>
                   <Link to="/signup">
                     <button className="bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-6 rounded-md transition duration-300">

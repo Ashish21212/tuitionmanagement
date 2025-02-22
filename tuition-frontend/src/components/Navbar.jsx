@@ -1,12 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { handleSuccess } from '../util';
 
-const Navbar = ({handleLogout}) => {
+const Navbar = () => {
+  const navigate = useNavigate();
   const isLoggedIn = localStorage.getItem("token");
-  
- 
 
- 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('loggedInUser');
+    handleSuccess('Logging out...');
+    setTimeout(() => {
+      navigate('/');
+    }, 2000);
+  };
 
   return (
     <nav className="bg-gray-800 text-white py-4">

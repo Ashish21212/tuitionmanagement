@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { handleSuccess } from '../util';
 import FirstBanner from './FirstBanner/FirstBanner';
-import { ToastContainer } from 'react-toastify';
 import Navbar from './Navbar';
+import { ToastContainer } from 'react-toastify';
 
 function Home() {
+  const isLoggedIn = localStorage.getItem("token");
+
+
   const [loggedInUser, setLoggedInUser] = useState('');
   const navigate = useNavigate();
 
@@ -18,19 +21,20 @@ function Home() {
     localStorage.removeItem('token');
     localStorage.removeItem('loggedInUser');
     handleSuccess('Logging out...');
+    setLoggedInUser('');
     setTimeout(() => {
-      navigate('/login');
+      navigate('/');
     }, 2000);
   };
 
   return (
     <div>
-      {loggedInUser ? (
+      {isLoggedIn ? (
         <>
           <h1>Welcome {loggedInUser}!</h1>
         </>
       ) : null}
-      <FirstBanner loggedInUser={loggedInUser} />
+      <FirstBanner loggedInUser={isLoggedIn} />
       <ToastContainer />
     </div>
   );
