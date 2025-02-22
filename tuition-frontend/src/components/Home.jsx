@@ -34,7 +34,7 @@ function Home() {
           <h1>Welcome {loggedInUser}!</h1>
         </>
       ) : null}
-      <FirstBanner loggedInUser={isLoggedIn} />
+      <FirstBanner />
       <ToastContainer />
     </div>
   );
