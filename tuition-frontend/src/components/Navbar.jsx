@@ -11,14 +11,14 @@ const Navbar = () => {
     localStorage.removeItem('loggedInUser');
     handleSuccess('Logging out...');
     setTimeout(() => {
-      navigate('/');
+      navigate('/login');
     }, 2000);
   };
 
   return (
     <nav className="bg-gray-800 text-white py-4">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-lg font-bold">Tuition Management System</div>
+        <div className="text-lg font-bold">Hamro Shikshya</div>
         <div className="space-x-4">
           <Link to="/" className="hover:text-gray-400">Home</Link>
           {!isLoggedIn ? (

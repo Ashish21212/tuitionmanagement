@@ -10,10 +10,10 @@ const FirstBanner = () => {
           {/* Left content area */}
           <div className="w-full md:w-1/2 mb-8 md:mb-0">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-700 mb-4">
-              Hellooooooooooo oooooooo oooooooooo
+           Hamro Shikshya
             </h1>
             <p className="text-gray-700 text-lg mb-8">
-              Write someting hereeee eeeeeeeeeee eeeeeeeee
+            "A modern web application to manage students, courses, schedules, and payments — all in one place."
             </p>
             <div className="flex flex-wrap gap-4">
               {!isLoggedIn && (

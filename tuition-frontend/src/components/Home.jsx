@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { handleSuccess } from '../util';
 import FirstBanner from './FirstBanner/FirstBanner';
-import Navbar from './Navbar';
 import { ToastContainer } from 'react-toastify';
 
 function Home() {
@@ -31,7 +30,8 @@ function Home() {
     <div>
       {isLoggedIn ? (
         <>
-          <h1>Welcome {loggedInUser}!</h1>
+          <img src="/user.png" style={{height: '40px'}} alt="user" />
+          <h1 style={{color: 'red', fontSize:'20px'}}>{loggedInUser}'s Feed</h1>
         </>
       ) : null}
       <FirstBanner />
