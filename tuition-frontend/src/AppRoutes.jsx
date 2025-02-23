@@ -11,20 +11,11 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      
      
-
-      {isLoggedIn &&(
-        <>
-          <Route
-            path="/signup"
-            element={<ProtectedRoutes element={<Signup />} />}
-          />
-          <Route
-            path="/login"
-            element={<ProtectedRoutes element={<Login />} />}
-          />
-        </>
-      )}
+        <Route path="/signup" element={<ProtectedRoutes element={<Signup />} />} />
+        <Route path="/login" element={<ProtectedRoutes element={<Login />} />} />
+       
     </Routes>
   );
 };
